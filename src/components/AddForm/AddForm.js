@@ -26,7 +26,7 @@ export function AddForm({ onSubmit }) {
       }}
       validationSchema={schema}
     >
-      <Form className={css.form}>
+      <Form className={css.addForm}>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Box>
             <Box display="flex" alignItems="center" position="relative">
