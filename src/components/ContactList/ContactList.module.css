@@ -32,14 +32,16 @@
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  color:#212121;
 }
 
 .delButton:hover {
   background-color: red;
+  color: white;
 }
 
 .icon {
   width: 20px;
-  fill: #212121;
+  fill: currentColor;
   height: auto;
 }

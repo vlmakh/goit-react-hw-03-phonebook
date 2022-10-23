@@ -29,6 +29,7 @@
 
 .addButton:hover {
   background-color: green;
+  color: white;
 }
 
 .mistake {

@@ -67,7 +67,7 @@ export function AddForm({ onSubmit }) {
           </Box>
 
           <button type="submit" className={css.addButton}>
-            <MdOutlineDataSaverOn size="40" />
+            <MdOutlineDataSaverOn size="40" fill="currentColor" />
           </button>
         </Box>
       </Form>
