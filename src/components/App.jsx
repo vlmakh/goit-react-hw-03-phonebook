@@ -23,13 +23,11 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('phonebook', JSON.stringify(this.state.contacts));
     }
   }
-
-  componentWillUnmount() {}
 
   addContact = data => {
     const { contacts } = this.state;
