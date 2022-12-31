@@ -61,12 +61,17 @@ class App extends Component {
     this.setState({ filter: event.currentTarget.value });
   };
 
-  render() {
-    const { contacts, filter } = this.state;
+  showFilteredContacts = () => {
+    const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
-    const filteredContacts = contacts.filter(el =>
-      el.name.toLowerCase().includes(normalizedFilter)
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
     );
+  };
+
+  render() {
+    const { filter } = this.state;    
 
     return (
       <Box width="360px" mx="auto" py={2}>
@@ -76,10 +81,16 @@ class App extends Component {
         <Box p={3} mt={2} border="1px solid #212121" borderRadius={3}>
           <h2>Contacts</h2>
 
-          <Filter value={filter} onChange={this.filterChange} />
+          {this.showFilteredContacts().length > 0 || filter ? (
+            <Filter value={filter} onChange={this.filterChange} />
+          ) : (
+            <Box mt="20px">
+              <p>No contacts in book</p>
+            </Box>
+          )}
 
           <ContactList
-            contacts={filteredContacts}
+            contacts={this.showFilteredContacts()}
             deleteContact={this.deleteContact}
           />
         </Box>
