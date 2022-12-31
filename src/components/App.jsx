@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { AddForm } from './AddForm/AddForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
+import {Notification} from 'components/Notification/Notification'
 
 class App extends Component {
   state = {
@@ -84,9 +85,7 @@ class App extends Component {
           {this.showFilteredContacts().length > 0 || filter ? (
             <Filter value={filter} onChange={this.filterChange} />
           ) : (
-            <Box mt="20px">
-              <p>No contacts in book</p>
-            </Box>
+            <Notification msg="No contacts added"/>
           )}
 
           <ContactList
