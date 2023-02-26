@@ -18,8 +18,8 @@ export type ContactListType = {
 
 export type StateType = {
   contacts: Array<ContactItem>;
-  filter: string,
-}
+  filter: string;
+};
 
 export type FilterType = {
   value: string;
@@ -37,4 +37,8 @@ export type OnSubmitType = {
 
 export type ResetFormType = {
   resetForm: () => void;
+};
+
+export type NotificationType = {
+  msg: string;
 };
