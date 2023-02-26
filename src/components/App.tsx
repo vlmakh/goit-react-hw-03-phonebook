@@ -4,12 +4,12 @@ import { nanoid } from 'nanoid';
 import { AddForm } from './AddForm/AddForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { Notification } from 'components/Notification/Notification'
+import { Notification } from 'components/Notification/Notification';
 import { ValuesType, ContactItem } from './types';
 import React from 'react';
 import { StateType } from './types';
 
-class App extends Component <{}, StateType>  {
+class App extends Component<{}, StateType> {
   state = {
     contacts: [
       { id: nanoid(4), name: 'Arnold Schwarzenegger', number: '5558801' },
@@ -21,8 +21,10 @@ class App extends Component <{}, StateType>  {
   };
 
   componentDidMount() {
-    const savedData: any = JSON.parse(localStorage.getItem('phonebook'));
-    if (savedData) {
+    const value = localStorage.getItem('phonebook');
+
+    if (typeof value === 'string') {
+      const savedData = JSON.parse(value);
       this.setState({ contacts: savedData });
     }
   }
@@ -57,11 +59,13 @@ class App extends Component <{}, StateType>  {
 
   deleteContact = (contactId: string) => {
     this.setState((prevState: StateType) => ({
-      contacts: prevState.contacts.filter((contact: ContactItem) => contact.id !== contactId),
+      contacts: prevState.contacts.filter(
+        (contact: ContactItem) => contact.id !== contactId
+      ),
     }));
   };
 
-  filterChange = (event: { currentTarget: { value: string; }; }) => {
+  filterChange = (event: { currentTarget: { value: string } }) => {
     this.setState({ filter: event.currentTarget.value });
   };
 
@@ -75,7 +79,7 @@ class App extends Component <{}, StateType>  {
   };
 
   render() {
-    const { filter } = this.state;    
+    const { filter } = this.state;
 
     return (
       <Box width="360px" mx="auto" py={2}>
@@ -88,7 +92,7 @@ class App extends Component <{}, StateType>  {
           {this.showFilteredContacts().length > 0 || filter ? (
             <Filter value={filter} onChange={this.filterChange} />
           ) : (
-            <Notification msg="No contacts added"/>
+            <Notification msg="No contacts added" />
           )}
 
           <ContactList
