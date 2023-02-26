@@ -4,9 +4,12 @@ import { nanoid } from 'nanoid';
 import { AddForm } from './AddForm/AddForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import {Notification} from 'components/Notification/Notification'
+import { Notification } from 'components/Notification/Notification'
+import { ValuesType, ContactItem } from './types';
+import React from 'react';
+import { StateType } from './types';
 
-class App extends Component {
+class App extends Component <{}, StateType>  {
   state = {
     contacts: [
       { id: nanoid(4), name: 'Arnold Schwarzenegger', number: '5558801' },
@@ -18,19 +21,19 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const savedData = JSON.parse(localStorage.getItem('phonebook'));
+    const savedData: any = JSON.parse(localStorage.getItem('phonebook'));
     if (savedData) {
       this.setState({ contacts: savedData });
     }
   }
 
-  componentDidUpdate(_, prevState) {
+  componentDidUpdate(_: any, prevState: StateType) {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('phonebook', JSON.stringify(this.state.contacts));
     }
   }
 
-  addContact = data => {
+  addContact = (data: ValuesType) => {
     const { contacts } = this.state;
 
     if (
@@ -52,13 +55,13 @@ class App extends Component {
     }
   };
 
-  deleteContact = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+  deleteContact = (contactId: string) => {
+    this.setState((prevState: StateType) => ({
+      contacts: prevState.contacts.filter((contact: ContactItem) => contact.id !== contactId),
     }));
   };
 
-  filterChange = event => {
+  filterChange = (event: { currentTarget: { value: string; }; }) => {
     this.setState({ filter: event.currentTarget.value });
   };
 

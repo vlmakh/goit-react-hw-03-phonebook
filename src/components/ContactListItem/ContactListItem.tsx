@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
 import css from './ContactListItem.module.css';
 import { MdDeleteForever } from 'react-icons/md';
+import { ContactListItemType } from 'components/types';
+import React from 'react';
 
-export function ContactListItem({ id, name, number, deleteContact }) {
+export function ContactListItem({ id, name, number, deleteContact }: ContactListItemType) {
   return (
     <li className={css.contactItem}>
       <span className={css.contactName}>{name}</span>
@@ -18,10 +19,3 @@ export function ContactListItem({ id, name, number, deleteContact }) {
     </li>
   );
 }
-
-ContactListItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
-  deleteContact: PropTypes.func.isRequired,
-};

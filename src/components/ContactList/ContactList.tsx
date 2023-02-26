@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
 import css from './ContactList.module.css';
 import { ContactListItem } from 'components/ContactListItem/ContactListItem';
+import React from 'react';
+import { ContactListType } from 'components/types';
 
-export function ContactList({ contacts, deleteContact }) {
+export function ContactList({ contacts, deleteContact }: ContactListType) {
   return (
     <ul className={css.contactList}>
       {contacts
@@ -19,14 +20,3 @@ export function ContactList({ contacts, deleteContact }) {
     </ul>
   );
 }
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }).isRequired
-  ),
-  deleteContact: PropTypes.func.isRequired,
-};

@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 import css from './Filter.module.css';
+import { FilterType } from 'components/types';
 
-export function Filter({ value, onChange }) {
+export function Filter({ value, onChange }: FilterType) {
   return (
     <input
       className={css.filterInput}
@@ -12,8 +13,3 @@ export function Filter({ value, onChange }) {
     />
   );
 }
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
